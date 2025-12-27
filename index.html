@@ -272,6 +272,16 @@
             overflow: hidden;
         }
 
+        .hero-illustration img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .hero-illustration::before {
             content: '';
             position: absolute;
@@ -488,6 +498,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+
+        .steps-illustration img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         /* Comparison Section */
@@ -683,14 +704,20 @@
         }
 
         .guarantee-badge {
-            display: inline-flex;
+            display: flex;
+            justify-content: center;
             align-items: center;
             gap: 10px;
             background-color: var(--primary-color);
             padding: 15px 25px;
             border-radius: 50px;
             font-weight: 600;
-            margin-bottom: 40px;
+            margin: 0 auto 40px;
+            max-width: 700px;
+        }
+
+        .guarantee-badge svg {
+            flex: 0 0 auto;
         }
 
         .cta-button {
@@ -802,10 +829,14 @@
                 justify-content: flex-start;
                 gap: 20px;
             }
+
+            .header-actions {
+                flex: 1 1 auto;
+                justify-content: flex-end;
+            }
             
             .mobile-menu-btn {
                 display: block;
-                flex: 1 1 auto;
                 text-align: right;
             }
             
@@ -897,6 +928,14 @@
             .btn {
                 padding: 12px 24px;
             }
+
+            .header-actions {
+                justify-content: flex-start;
+            }
+
+            .mobile-menu-btn {
+                flex: 1 1 auto;
+            }
             
             .hero {
                 padding-top: 120px;
@@ -924,8 +963,6 @@
         <div class="container header-container">
             <a href="#" class="logo">Remote<span>Start</span></a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-            
             <nav>
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#home">Головна</a></li>
@@ -941,6 +978,8 @@
             <div class="header-actions">
                 <a href="#cta" class="btn join-btn">Стати учасником</a>
             </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </div>
     </header>
 
@@ -979,17 +1018,7 @@
             </div>
             
             <div class="hero-illustration">
-                <svg class="illustration-img" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="50" y="50" width="400" height="300" rx="20" fill="#f0f0f0"/>
-                    <circle cx="150" cy="150" r="40" fill="#ffc721"/>
-                    <circle cx="350" cy="150" r="40" fill="#4a6fa5"/>
-                    <rect x="100" y="220" width="80" height="20" rx="10" fill="#ddd"/>
-                    <rect x="220" y="220" width="80" height="20" rx="10" fill="#ddd"/>
-                    <rect x="340" y="220" width="80" height="20" rx="10" fill="#ddd"/>
-                    <line x1="50" y1="250" x2="450" y2="250" stroke="#ccc" stroke-width="2"/>
-                    <path d="M150,100 L150,130 M130,115 L170,115" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M350,100 L350,130 M330,115 L370,115" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-                </svg>
+                <img src="img/01.svg" alt="hero">
             </div>
         </div>
     </section>
@@ -1222,19 +1251,7 @@
             </div>
             
             <div class="steps-illustration">
-                <svg viewBox="0 0 400 300" width="100%" height="100%">
-                    <rect x="50" y="50" width="300" height="200" rx="20" fill="#fff" stroke="#ffc721" stroke-width="2"/>
-                    <circle cx="200" cy="100" r="30" fill="#ffc721" opacity="0.2"/>
-                    <circle cx="200" cy="100" r="20" fill="#ffc721" opacity="0.5"/>
-                    <circle cx="200" cy="100" r="10" fill="#ffc721"/>
-                    <path d="M100,180 L150,180 L150,220 L100,220 Z" fill="#e0e0e0"/>
-                    <path d="M180,180 L230,180 L230,220 L180,220 Z" fill="#e0e0e0"/>
-                    <path d="M260,180 L310,180 L310,220 L260,220 Z" fill="#e0e0e0"/>
-                    <text x="125" y="200" text-anchor="middle" font-size="14" fill="#666">1</text>
-                    <text x="205" y="200" text-anchor="middle" font-size="14" fill="#666">2</text>
-                    <text x="285" y="200" text-anchor="middle" font-size="14" fill="#666">3</text>
-                    <path d="M125,180 L125,150 L200,100 L275,150 L275,180" stroke="#ffc721" stroke-width="2" fill="none"/>
-                </svg>
+                <img src="img/02.svg" alt="steps">
             </div>
         </div>
     </section>
@@ -1588,7 +1605,7 @@
         });
         
         // Инициализация Swiper для отзывов
-        const swiper = new Swiper('.reviews-slider', {
+        /*const swiper = new Swiper('.reviews-slider', {
             loop: true,
             pagination: {
                 el: '.swiper-pagination',
@@ -1612,7 +1629,7 @@
                     spaceBetween: 40,
                 },
             },
-        });
+        });*/
         
         // Анимация шагов при скролле
         const stepItems = document.querySelectorAll('.step-item');
@@ -1697,6 +1714,27 @@
         document.querySelector('.cta-button').addEventListener('click', function(e) {
             e.preventDefault();
             alert('Дякуємо за вашу заявку! Ми зв\'яжемося з вами протягом години, щоб обговорити деталі старту вашої кар\'єри.');
+        });
+
+        const headerButton = document.querySelector(".header-actions");
+        const headerContainer = document.querySelector(".header-container");
+        const headerNav = document.querySelector(".header-container nav ul");
+
+        function buttonMove() {
+            const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            if (viewport_width < 576) {
+                headerNav.insertBefore(headerButton, headerNav.children[headerNav.children.length]);
+            } else {
+                headerContainer.insertBefore(headerButton, headerContainer.children[2]);
+            }
+        }
+
+        buttonMove();
+        window.addEventListener("resize", buttonMove);
+
+        headerButton.addEventListener("click", function () {
+            navMenu.classList.remove('active');
+            mobileMenuBtn.textContent = '☰';
         });
     </script>
 </body>
