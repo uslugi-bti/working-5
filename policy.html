@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka prywatności - RemoteStart</title>
+    <style>
+        /* Reset i style podstawowe - IDENTYCZNE JAK NA STRONIE GŁÓWNEJ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary-color: #ffc721;
+            --primary-light: #fff6e0;
+            --primary-dark: #e6b31e;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --text-gray: #999999;
+            --bg-light: #fafafa;
+            --bg-white: #ffffff;
+            --border-color: #eaeaea;
+            --shadow-light: 0 2px 12px rgba(0, 0, 0, 0.04);
+            --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+            --section-padding: 80px 20px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: var(--section-padding);
+        }
+
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Header - IDENTYCZNY */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-light);
+            z-index: 1000;
+            padding: 18px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .join-btn {
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: var(--border-radius);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Main Content - Styl dla polityki */
+        .policy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .policy-content ul {
+            list-style: disc;
+            margin-left: 25px;
+            margin-bottom: 1.2rem;
+        }
+
+        .policy-content li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .policy-content .last-updated {
+            background-color: var(--primary-light);
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        hr {
+            margin: 30px 0;
+            border: none;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* Footer - IDENTYCZNY */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--bg-white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+
+        .footer-about {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .footer-menu h4 {
+            color: var(--bg-white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-menu ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-menu ul li a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+
+        .footer-menu ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsywność */
+        @media (max-width: 1150px) {
+            .header-container {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 20px;
+            }
+            .header-actions {
+                flex: 1 1 auto;
+                justify-content: flex-end;
+            }
+            .mobile-menu-btn {
+                display: block;
+                text-align: right;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-medium);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.6rem; }
+            .policy-content { padding: 25px; }
+            .footer-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container { grid-template-columns: 1fr; }
+            .policy-content { padding: 20px; }
+            .header-actions { justify-content: flex-start; }
+            .mobile-menu-btn { flex: 1 1 auto; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - IDENTYCZNY JAK NA STRONIE GŁÓWNEJ -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Remote<span>Start</span></a>
+            
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html#home">Strona główna</a></li>
+                    <li><a href="index.html#professions">Zawody</a></li>
+                    <li><a href="index.html#steps">Start kariery</a></li>
+                    <li><a href="index.html#promise">Korzyści</a></li>
+                    <li><a href="index.html#reviews">Opinie</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="index.html#contacts">Kontakt</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="index.html#cta" class="btn join-btn">Dołącz teraz</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </header>
+
+    <!-- Główna treść polityki prywatności -->
+    <section style="padding-top: 140px; padding-bottom: 80px;">
+        <div class="container">
+            <div class="policy-content">
+                <h1>Polityka prywatności</h1>
+                
+                <div class="last-updated">
+                    📅 Ostatnia aktualizacja: 11 czerwca 2026 r.
+                </div>
+
+                <p>W RemoteStart (dalej: "my", "nas", "RemoteStart") poważnie traktujemy ochronę Twoich danych osobowych. Niniejsza Polityka prywatności wyjaśnia, jakie dane zbieramy, w jaki sposób je wykorzystujemy oraz jakie prawa przysługują Ci w związku z korzystaniem z naszej platformy i usług.</p>
+
+                <h2>1. Administrator danych</h2>
+                <p>Administratorem Twoich danych osobowych jest RemoteStart sp. z o.o. z siedzibą w Warszawie (00-001), przy ul. Internetowej 15. Możesz skontaktować się z nami pod adresem e-mail: <a href="mailto:rodo@remotestart.pl">rodo@remotestart.pl</a> lub telefonicznie: +48 22 123 45 67.</p>
+
+                <h2>2. Jakie dane zbieramy</h2>
+                <p>W zależności od sposobu korzystania z naszej strony i usług, możemy zbierać następujące kategorie danych osobowych:</p>
+                <ul>
+                    <li><strong>Dane identyfikacyjne:</strong> imię, nazwisko, data urodzenia, adres zamieszkania.</li>
+                    <li><strong>Dane kontaktowe:</strong> adres e-mail, numer telefonu.</li>
+                    <li><strong>Dane zawodowe:</strong> wykształcenie, doświadczenie zawodowe, preferowane kierunki pracy zdalnej.</li>
+                    <li><strong>Dane techniczne:</strong> adres IP, typ przeglądarki, system operacyjny, dane o aktywności na stronie (pliki cookies).</li>
+                    <li><strong>Dane dotyczące płatności:</strong> numer rachunku bankowego (wyłącznie w celu wypłaty wynagrodzenia).</li>
+                </ul>
+
+                <h2>3. Cele i podstawy prawne przetwarzania</h2>
+                <p>Twoje dane osobowe przetwarzamy w następujących celach:</p>
+                <ul>
+                    <li><strong>Realizacja usług szkoleniowych i pośrednictwa pracy</strong> – na podstawie umowy (art. 6 ust. 1 lit. b RODO).</li>
+                    <li><strong>Komunikacja z Tobą</strong> – odpowiadanie na zapytania, wysyłanie powiadomień (art. 6 ust. 1 lit. f RODO).</li>
+                    <li><strong>Marketing własny</strong> – wysyłanie newslettera, informacji o nowościach (jeśli wyrazisz zgodę – art. 6 ust. 1 lit. a RODO).</li>
+                    <li><strong>Analiza i ulepszanie strony</strong> – na podstawie naszego prawnie uzasadnionego interesu (art. 6 ust. 1 lit. f RODO).</li>
+                    <li><strong>Wypełnienie obowiązków prawnych</strong> – np. rachunkowość, podatki (art. 6 ust. 1 lit. c RODO).</li>
+                </ul>
+
+                <h2>4. Pliki cookies i podobne technologie</h2>
+                <p>Nasza strona internetowa używa plików cookies w celu zapewnienia prawidłowego działania, analizy ruchu oraz dostosowania treści. Pliki cookies to małe pliki tekstowe zapisywane na Twoim urządzeniu. Możesz zarządzać ustawieniami cookies w swojej przeglądarce lub za pomocą naszego bannera cookie.</p>
+                <p>Wyróżniamy następujące rodzaje plików cookies:</p>
+                <ul>
+                    <li><strong>Niezbędne</strong> – umożliwiają korzystanie z podstawowych funkcji strony (np. logowanie).</li>
+                    <li><strong>Analityczne</strong> – pomagają nam zrozumieć, jak użytkownicy korzystają ze strony (Google Analytics).</li>
+                    <li><strong>Funkcjonalne</strong> – zapamiętują Twoje preferencje (np. wybór języka).</li>
+                    <li><strong>Marketingowe</strong> – wykorzystywane do wyświetlania spersonalizowanych reklam.</li>
+                </ul>
+                <p>Więcej informacji na temat zarządzania plikami cookies znajdziesz w ustawieniach swojej przeglądarki.</p>
+
+                <h2>5. Okres przechowywania danych</h2>
+                <p>Przechowujemy Twoje dane osobowe przez okres niezbędny do realizacji celów wskazanych w niniejszej polityce, a po tym czasie przez okres wymagany przepisami prawa (np. 5 lat dla danych księgowych). Dane marketingowe przetwarzamy do czasu wycofania zgody.</p>
+
+                <h2>6. Odbiorcy danych</h2>
+                <p>Twoje dane mogą być udostępniane następującym kategoriom odbiorców:</p>
+                <ul>
+                    <li>Podmiotom świadczącym na naszą rzecz usługi hostingowe, IT, analityczne (np. Google).</li>
+                    <li>Partnerom biznesowym, którzy oferują projekty dla naszych kursantów (wyłącznie w zakresie niezbędnym do pośrednictwa pracy).</li>
+                    <li>Organom ścigania lub instytucjom państwowym, jeśli wymaga tego prawo.</li>
+                </ul>
+
+                <h2>7. Twoje prawa</h2>
+                <p>Przysługują Ci następujące prawa związane z przetwarzaniem danych osobowych:</p>
+                <ul>
+                    <li>Prawo dostępu do swoich danych (art. 15 RODO).</li>
+                    <li>Prawo do sprostowania danych (art. 16 RODO).</li>
+                    <li>Prawo do usunięcia danych ("prawo do bycia zapomnianym") – art. 17 RODO.</li>
+                    <li>Prawo do ograniczenia przetwarzania (art. 18 RODO).</li>
+                    <li>Prawo do przenoszenia danych (art. 20 RODO).</li>
+                    <li>Prawo do wniesienia sprzeciwu wobec przetwarzania (art. 21 RODO).</li>
+                    <li>Prawo do cofnięcia zgody w dowolnym momencie (jeśli przetwarzanie odbywa się na podstawie zgody).</li>
+                </ul>
+                <p>Aby skorzystać z powyższych praw, skontaktuj się z nami pod adresem <a href="mailto:rodo@remotestart.pl">rodo@remotestart.pl</a>. Masz również prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa).</p>
+
+                <h2>8. Bezpieczeństwo danych</h2>
+                <p>Stosujemy odpowiednie środki techniczne i organizacyjne, aby zapewnić bezpieczeństwo Twoich danych, w tym szyfrowanie SSL, regularne audyty bezpieczeństwa oraz ograniczony dostęp do danych upoważnionego personelu.</p>
+
+                <h2>9. Przekazywanie danych poza EOG</h2>
+                <p>Nie przekazujemy Twoich danych osobowych do państw trzecich (poza Europejski Obszar Gospodarczy), chyba że jest to niezbędne do realizacji usług (np. korzystanie z narzędzi analitycznych Google, które może przekazywać dane do USA na podstawie standardowych klauzul umownych).</p>
+
+                <h2>10. Zmiany Polityki prywatności</h2>
+                <p>Zastrzegamy sobie prawo do wprowadzania zmian w niniejszej Polityce prywatności. O wszelkich istotnych zmianach poinformujemy Cię poprzez umieszczenie informacji na stronie głównej lub za pośrednictwem e-maila. Zachęcamy do regularnego zapoznawania się z treścią Polityki.</p>
+
+                <hr>
+
+                <h3>Kontakt w sprawach ochrony danych</h3>
+                <p>Jeśli masz pytania dotyczące niniejszej Polityki prywatności lub chcesz skorzystać ze swoich praw, skontaktuj się z naszym Inspektorem Ochrony Danych:</p>
+                <p>📧 <strong>E-mail:</strong> <a href="mailto:iod@remotestart.pl">iod@remotestart.pl</a><br>
+                📞 <strong>Telefon:</strong> +48 22 123 45 68<br>
+                📮 <strong>Adres:</strong> RemoteStart, ul. Internetowa 15, 00-001 Warszawa (z dopiskiem "ODO")</p>
+
+                <p style="margin-top: 30px; font-size: 0.9rem; text-align: center; color: var(--text-gray);">
+                    Niniejsza Polityka prywatności została opracowana zgodnie z wymogami RODO (Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - IDENTYCZNY JAK NA STRONIE GŁÓWNEJ -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Remote<span>Start</span></div>
+                    <p class="footer-about">Platforma do rozpoczęcia kariery w zawodach online. Szkolimy, wspieramy i znajdujemy pierwsze projekty dla początkujących.</p>
+                </div>
+                
+                <div class="footer-menu">
+                    <h4>Nawigacja</h4>
+                    <ul>
+                        <li><a href="index.html#home">Strona główna</a></li>
+                        <li><a href="index.html#professions">Zawody</a></li>
+                        <li><a href="index.html#steps">Start kariery</a></li>
+                        <li><a href="index.html#promise">Korzyści</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-menu">
+                    <h4>Oferty pracy</h4>
+                    <ul>
+                        <li><a href="index.html#professions">Asystent zespołu digital</a></li>
+                        <li><a href="index.html#professions">Menadżer prostych zadań</a></li>
+                        <li><a href="index.html#professions">Konsultant online</a></li>
+                        <li><a href="index.html#professions">Pomocnik treści</a></li>
+                        <li><a href="index.html#professions">Pomocnik SMM</a></li>
+                        <li><a href="index.html#professions">Digitalizator materiałów</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-menu">
+                    <h4>Informacje</h4>
+                    <ul>
+                        <li><a href="index.html#reviews">Opinie</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="index.html#contacts">Kontakt</a></li>
+                        <li><a href="#">Warunki użytkowania</a></li>
+                        <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2026 RemoteStart. Wszelkie prawa zastrzeżone.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobilne - identyczne jak na stronie głównej
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+        }
+        
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                if(mobileMenuBtn) mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Dostosowanie przycisku header-actions dla wersji mobilnej
+        const headerButton = document.querySelector(".header-actions");
+        const headerContainer = document.querySelector(".header-container");
+        const headerNav = document.querySelector(".header-container nav ul");
+        
+        function buttonMove() {
+            const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            if (viewport_width < 576 && headerNav && headerButton) {
+                headerNav.insertBefore(headerButton, headerNav.children[headerNav.children.length]);
+            } else if (headerContainer && headerButton) {
+                headerContainer.insertBefore(headerButton, headerContainer.children[2]);
+            }
+        }
+        
+        buttonMove();
+        window.addEventListener("resize", buttonMove);
+        
+        if(headerButton) {
+            headerButton.addEventListener("click", function () {
+                if(navMenu) navMenu.classList.remove('active');
+                if(mobileMenuBtn) mobileMenuBtn.textContent = '☰';
+            });
+        }
+    </script>
+</body>
+</html>
